@@ -1,5 +1,7 @@
 import logging
 import pyrebase
+import pymysql
+import pymysql.cursors
 from flask import *
 
 app = Flask(__name__)
@@ -19,6 +21,26 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 
 auth = firebase.auth()
 
+# def db_connection:
+#     db_user = 'root'
+#     db_password = '123456'
+#     db_name = "point_system_2"
+#     db_connection_name = 'rewardmeasure:us-central1:measureward2'
+
+
+#     host = '127.0.0.1'
+#     con = pymysql.connect(user=db_user,port=5432, password=db_password,host = host, db=db_name)
+#     with con:
+#         cur =con.cursor()
+#         cur.execute("select * from user;")
+#         output = cur.fetchall()
+#         if not output:
+#             print("empty")
+#         else:
+#             print(output)
+#         print("test done!")
+
+
 @app.route('/', methods = ['POST','GET'])
 def hello():
     # return 'Hello World!'
@@ -30,7 +52,29 @@ def hello():
             return "sucessful"
         except expression as identifier:
             return expression
-    return render_template("test.html")
+    else:
+        db_user = 'root'
+        db_password = '123456'
+        db_name = "point_system_2"
+        db_connection_name = 'rewardmeasure:us-central1:measureward2'
+        unix_socket = '/cloudsql/{}'.format(db_connection_name)
+
+        host = '127.0.0.1'
+        con = pymysql.connect(user=db_user, password=db_password,unix_socket=unix_socket,host = host, db=db_name)
+        with con:
+            cur =con.cursor()
+            cur.execute("select * from user;")
+            output = cur.fetchall()
+            if not output:
+                print("empty")
+                return "empty"
+            else:
+                print(output)
+                return "something"
+            print("test done!")
+            # return render_template("test.html")
+        con.close()
+        # return "test"
 
 
 @app.errorhandler(500)

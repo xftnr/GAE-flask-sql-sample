@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <head>
+        <title>MeasuReward - Admin</title>
+    </head>
+    <body>
+            <header class="w3-container w3-teal">
+                    <h1>MeasuReward</h1>
+                </header>
+        <p>Welcome to admin page.</p>
+        
+        <br>
+        <table style="margin-left: 20px;"> 
+                <!-- Table headers -->
+                    <th> 
+                        <tr style="color: green; ">     
+                        <td>Name</td> 
+                        <td>Points Received</td>
+                        <td>Points Given out</td>
+                </tr> 
+                    </th> 
+                      
+                <!-- For loop logic of jinja template -->
+                {%for element in package1%} 
+                  
+                <!-- table rows -->
+                <tr> 
+                    <td>{{element[0]}}</td> 
+                    <td>{{element[1]}}</td> 
+                    <td>{{element[2]}}</td> 
+                  
+                {%endfor%} 
+                  
+            </tr> 
+                  
+            </table>
+            <br>
+            <br>
+            <table style="margin-left: 20px;"> 
+                    <!-- Table headers -->
+                        <th> 
+                            <tr style="color: green; ">     
+                            <td>Name</td> 
+                            <td>Points left</td>
+                    </tr> 
+                        </th> 
+                          
+                    <!-- For loop logic of jinja template -->
+                    {%for element in package2%} 
+                      
+                    <!-- table rows -->
+                    <tr> 
+                        <td>{{element[0]}}</td> 
+                        <td>{{element[1]}}</td> 
+                      
+                    {%endfor%} 
+                      
+                </tr> 
+                      
+                </table>
+                <br>
+                <form action = '/admin_page' method="POST">
+                        <button class="w3-button w3-section w3-teal w3-ripple" > Reset all Points </button>
+                </form>
+                
+                <br>
+                <table style="margin-left: 20px;"> 
+                        <!-- Table headers -->
+                            <th> 
+                                <tr style="color: green; ">     
+                                <td>Name</td> 
+                                <td>Date</td>
+                                <td>Redeem times</td>
+                        </tr> 
+                            </th> 
+                              
+                        <!-- For loop logic of jinja template -->
+                        {%for element in package3%} 
+                          
+                        <!-- table rows -->
+                        <tr> 
+                            <td>{{element[0]}}</td> 
+                            <td>{{element[1]}}</td>
+                            <td>{{element[2]}}</td> 
+                          
+                        {%endfor%} 
+                          
+                    </tr> 
+                          
+                    </table>
+    </body>
+</html>

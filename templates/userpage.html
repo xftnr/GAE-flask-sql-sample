@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <head>
+        <title>MeasuReward - User</title>
+    </head>
+    <body>
+            <header class="w3-container w3-teal">
+                    <h1>MeasuReward</h1>
+                </header>
+        <p>Welcome to user page, {{username}}.</p>
+        <table style="margin-left: 20px;"> 
+                <!-- Table headers -->
+                    <th> 
+                        <tr style="color: green; ">     
+                        <td>Sender</td> 
+                        <td>Receiver</td>
+                        <td>Date</td>
+                        <td>Amount</td>
+                        <td>Message</td>
+                </tr> 
+                    </th> 
+                      
+                <!-- For loop logic of jinja template -->
+                {%for element in package%} 
+                  
+                <!-- table rows -->
+                <tr> 
+                    <td>{{element[0]}}</td> 
+                    <td>{{element[1]}}</td> 
+                    <td>{{element[2]}}</td> 
+                    <td>{{element[3]}}</td>
+                    <td>{{element[4]}}</td> 
+                  
+                {%endfor%} 
+                  
+            </tr> 
+                  
+            </table>
+            <br>
+            <br>
+
+
+            <p>My Balance</p>
+            <table style="margin-left: 20px;"> 
+                    <!-- Table headers -->
+                        <th> 
+                            <tr style="color: green; ">     
+                            <td>Left-over</td> 
+                            <td>Received</td>
+                            <td>Redeemed</td>
+                    </tr> 
+                        </th> 
+                      
+                    <!-- table rows -->
+                    <tr> 
+                        <td>{{info[1]}}</td> 
+                        <td>{{info[2]}}</td> 
+                        <td>{{info[3]}}</td>  
+                </tr> 
+            </table>
+
+            <button class="w3-button w3-section w3-teal w3-ripple" onclick="myFunction()"> Redeem Points </button>
+            <br>
+            <br>
+
+            <form action = '/user_page/{{username}}' method="POST">
+                <p>
+                <label>Receiver Name</label>
+                <input class="w3-input" type="text" style="width:90%" name = 'receiver' required>
+                </p>
+                <p>
+                <label>Points to send</label>
+                <input type="number" name = 'amount' required>
+                </p>
+                <p>
+                <label>Message</label>
+                <input class="w3-input" type="text" style="width:90%" name = 'message' required>
+                </p>
+                <p>
+                <button class="w3-button w3-section w3-teal w3-ripple" name="submit"> Submit </button></p>
+            </form> 
+
+            <script>
+                    function myFunction() {
+                      alert("You do not have enough points to redeem");
+                    }
+            </script>
+    </body>
+</html>

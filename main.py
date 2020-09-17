@@ -9,14 +9,6 @@ from dateutil.relativedelta import relativedelta
 app = Flask(__name__)
 
 firebaseConfig = { 
-    'apiKey':"AIzaSyADsG358b27DZnVi5puA_wSvrBwCWPNf0o",
-    'authDomain': "rewardmeasure.firebaseapp.com",
-    'databaseURL': "https://rewardmeasure.firebaseio.com",
-    'projectId': "rewardmeasure",
-    'storageBucket': "rewardmeasure.appspot.com",
-    'messagingSenderId': "615142054910",
-    'appId': "1:615142054910:web:b7db88b965703c302b3eaf",
-    'measurementId': "G-9VKVFYBJZV"
   }
 
 firebase = pyrebase.initialize_app(firebaseConfig)
@@ -27,8 +19,8 @@ auth = firebase.auth()
 def db_connection():
     # hidden from the public
     db_user = 'root'
-    db_password = '123456'
-    db_name = "rewardmeasure2"
+    db_password = ''
+    db_name = ""
     db_connection_name = 'rewardmeasure:us-central1:measureward2'
     unix_socket = '/cloudsql/{}'.format(db_connection_name)
 
